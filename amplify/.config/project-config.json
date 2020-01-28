@@ -1,0 +1,17 @@
+{
+    "providers": [
+        "awscloudformation"
+    ],
+    "projectName": "amplifypushapp",
+    "version": "2.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react-native",
+        "config": {
+            "SourceDir": "/",
+            "DistributionDir": "build",
+            "BuildCommand": "npm run-script build",
+            "StartCommand": "npm run-script start"
+        }
+    }
+}

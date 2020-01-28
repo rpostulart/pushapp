@@ -1,0 +1,87 @@
+{
+	"auth": {
+		"amplifypushapp580941cc": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"pushAPI": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authamplifypushapp580941cc"
+						}
+					}
+				}
+			}
+		}
+	},
+	"function": {
+		"pushNotification": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "pushAPI",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			]
+		},
+		"pinpoint": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "pushAPI",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				},
+				{
+					"category": "analytics",
+					"resourceName": "amplifypushapp",
+					"attributes": [
+						"Id",
+						"Region"
+					]
+				}
+			]
+		},
+		"cleanPinpointApps": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "analytics",
+					"resourceName": "amplifypushapp",
+					"attributes": [
+						"Id",
+						"Region"
+					]
+				}
+			]
+		}
+	},
+	"analytics": {
+		"amplifypushapp": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+    "permissions": {
+        "api": {
+            "pushAPI": [
+                "read"
+            ]
+        },
+        "analytics": {
+            "amplifypushapp": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

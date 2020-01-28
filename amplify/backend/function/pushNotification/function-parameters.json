@@ -1,0 +1,11 @@
+{
+    "permissions": {
+        "api": {
+            "pushAPI": [
+                "create",
+                "read",
+                "update"
+            ]
+        }
+    }
+}

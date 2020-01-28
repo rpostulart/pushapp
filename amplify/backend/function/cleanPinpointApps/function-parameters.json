@@ -1,0 +1,12 @@
+{
+    "permissions": {
+        "analytics": {
+            "amplifypushapp": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}
