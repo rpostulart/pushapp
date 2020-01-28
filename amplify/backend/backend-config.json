@@ -61,21 +61,6 @@
 					]
 				}
 			]
-		},
-		"cleanPinpointApps": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "analytics",
-					"resourceName": "amplifypushapp",
-					"attributes": [
-						"Id",
-						"Region"
-					]
-				}
-			]
 		}
 	},
 	"analytics": {
